@@ -14,6 +14,8 @@ class ViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         print("ViewDidLoad")
+        let usersManager = UsersManager()
+        usersManager.performRequest()
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -22,8 +24,9 @@ class ViewController: UICollectionViewController {
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let userCell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! UserCell
-            userCell.setLabel(with: users[indexPath.row])
-            return userCell
+        userCell.setLabel(with: users[indexPath.row])
+        userCell.backgroundColor = UIColor.randomColor
+        return userCell
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
