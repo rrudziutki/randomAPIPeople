@@ -20,10 +20,8 @@ class ViewController: UICollectionViewController {
         users.count
     }
     
-    
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-                
-        guard let userCell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? UserCell else { return UICollectionViewCell() }
+        let userCell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! UserCell
             userCell.setLabel(with: users[indexPath.row])
             return userCell
     }
