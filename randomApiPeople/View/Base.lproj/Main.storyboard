@@ -45,7 +45,7 @@
                                 <color key="backgroundColor" systemColor="systemOrangeColor"/>
                                 <size key="customSize" width="200" height="200"/>
                                 <connections>
-                                    <outlet property="userLabel" destination="6rQ-D3-EFM" id="uVa-vf-SPq"/>
+                                    <outlet property="userLabel" destination="6rQ-D3-EFM" id="qnF-Mb-abf"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>

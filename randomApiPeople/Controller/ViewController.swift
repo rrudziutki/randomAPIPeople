@@ -9,12 +9,12 @@ import UIKit
 
 class ViewController: UICollectionViewController {
 
-    let users = ["Adam", "Basia", "Cecylia", "Damian", "Ela"]
-    
+    var users = [UserModel]()
+    var usersManager = UsersManager()
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("ViewDidLoad")
-        let usersManager = UsersManager()
+        usersManager.delegate = self
         usersManager.performRequest()
     }
 
@@ -24,7 +24,7 @@ class ViewController: UICollectionViewController {
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let userCell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! UserCell
-        userCell.setLabel(with: users[indexPath.row])
+        userCell.setLabel(with: users[indexPath.row].name)
         userCell.backgroundColor = UIColor.randomColor
         return userCell
     }
@@ -34,3 +34,20 @@ class ViewController: UICollectionViewController {
     }
 }
 
+//MARK: - UsersManagerDelegate
+
+extension ViewController: UsersManagerDelegate {
+    func updateUsersName(with usersData: [UserModel]) {
+        DispatchQueue.main.async {
+            for user in usersData {
+                self.users.append(user)
+            }
+            self.collectionView.reloadData()
+        }
+        
+    }
+    
+    func didFailed(with error: Error) {
+        print(error)
+    }
+}
