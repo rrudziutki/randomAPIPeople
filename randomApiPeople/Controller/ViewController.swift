@@ -11,9 +11,11 @@ class ViewController: UICollectionViewController {
     
     var users = [UserModel]()
     var usersManager = UsersManager()
+    var pressedCell = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "Users"
         usersManager.delegate = self
         usersManager.performRequest()
     }
@@ -31,6 +33,16 @@ class ViewController: UICollectionViewController {
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("The selected username is : \(users[indexPath.row])")
+        pressedCell = indexPath.row
+        performSegue(withIdentifier: "detail", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destinationVC = segue.destination as! DetailTableViewController
+        let user = users[pressedCell]
+        destinationVC.userInfo.append("User ID: \(user.id)")
+        destinationVC.userInfo.append("User Name: \(user.name)")
+        destinationVC.userInfo.append("User Username: \(user.username)")
     }
 }
 

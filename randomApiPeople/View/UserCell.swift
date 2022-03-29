@@ -13,9 +13,8 @@ class UserCell: UICollectionViewCell {
     
     override func draw(_ rect: CGRect) {
         self.layer.cornerRadius = self.frame.size.width / 2
+        
     }
-    
-    
     
     func setLabel(with name: String) {
         userLabel.text = name
