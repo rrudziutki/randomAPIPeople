@@ -8,16 +8,16 @@
 import UIKit
 
 class ViewController: UICollectionViewController {
-
+    
     var users = [UserModel]()
     var usersManager = UsersManager()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         usersManager.delegate = self
         usersManager.performRequest()
     }
-
+    
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         users.count
     }
@@ -37,14 +37,12 @@ class ViewController: UICollectionViewController {
 //MARK: - UsersManagerDelegate
 
 extension ViewController: UsersManagerDelegate {
+    
     func updateUsersName(with usersData: [UserModel]) {
-        DispatchQueue.main.async {
-            for user in usersData {
-                self.users.append(user)
-            }
-            self.collectionView.reloadData()
+        for user in usersData {
+            self.users.append(user)
         }
-        
+        self.collectionView.reloadData()
     }
     
     func didFailed(with error: Error) {

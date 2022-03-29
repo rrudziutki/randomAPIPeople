@@ -21,13 +21,18 @@ struct UsersManager {
         guard let url = URL(string: usersURL) else { return }
         let session = URLSession(configuration: .default)
         let task = session.dataTask(with: url) { data, response, error in
-            if let error = error {
-                delegate?.didFailed(with: error)
-                return
-            }
-            if let safeData = data {
-                if let usersData = parseJSON(safeData) {
-                    delegate?.updateUsersName(with: usersData)
+            DispatchQueue.main.async {
+                if let httpResponse = response as? HTTPURLResponse {
+                    if httpResponse.statusCode == 200 {
+                        if let safeData = data {
+                            if let unwrapedData = parseJSON(safeData) {
+                                delegate?.updateUsersName(with: unwrapedData)
+                            }
+                        }
+                    } else {
+                        // TODO - StatusCodes error handling
+                        delegate?.didFailed(with: error!)
+                    }
                 }
             }
         }
@@ -36,19 +41,19 @@ struct UsersManager {
     
     func parseJSON(_ data: Data) -> [UserModel]? {
         let decoder = JSONDecoder()
-        var arr = [UserModel]()
+        var users = [UserModel]()
         do {
             let decodedData = try decoder.decode([UsersData].self, from: data)
             for user in decodedData {
                 let id = user.id
                 let name = user.name
                 let username = user.username
-                arr.append(UserModel(id: id, name: name, username: username))
+                users.append(UserModel(id: id, name: name, username: username))
             }
         } catch {
             delegate?.didFailed(with: error)
             return nil
         }
-        return arr
+        return users
     }
 }
