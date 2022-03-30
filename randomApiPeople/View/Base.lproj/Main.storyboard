@@ -30,8 +30,8 @@
                                     <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6rQ-D3-EFM">
-                                            <rect key="frame" x="79.5" y="89.5" width="41.5" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6rQ-D3-EFM">
+                                            <rect key="frame" x="10" y="90" width="180" height="20.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -40,6 +40,7 @@
                                     <constraints>
                                         <constraint firstItem="6rQ-D3-EFM" firstAttribute="centerY" secondItem="3My-iu-EdP" secondAttribute="centerY" id="VSm-MB-RAf"/>
                                         <constraint firstItem="6rQ-D3-EFM" firstAttribute="centerX" secondItem="3My-iu-EdP" secondAttribute="centerX" id="jLd-fM-JhO"/>
+                                        <constraint firstItem="6rQ-D3-EFM" firstAttribute="width" secondItem="3My-iu-EdP" secondAttribute="width" multiplier="0.9" id="mJT-tS-tTf"/>
                                     </constraints>
                                 </collectionViewCellContentView>
                                 <color key="backgroundColor" systemColor="systemOrangeColor"/>

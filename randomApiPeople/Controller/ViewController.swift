@@ -26,7 +26,7 @@ class ViewController: UICollectionViewController {
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let userCell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! UserCell
-        userCell.setLabel(with: users[indexPath.row].name)
+        userCell.setLabel(with: users[indexPath.row].username)
         userCell.backgroundColor = UIColor.randomColor
         return userCell
     }
@@ -39,10 +39,8 @@ class ViewController: UICollectionViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let destinationVC = segue.destination as! DetailTableViewController
-        let user = users[pressedCell]
-        destinationVC.userInfo.append("User ID: \(user.id)")
-        destinationVC.userInfo.append("User Name: \(user.name)")
-        destinationVC.userInfo.append("User Username: \(user.username)")
+        let chosenUser = users[pressedCell]
+        destinationVC.user = chosenUser
     }
 }
 
@@ -59,5 +57,18 @@ extension ViewController: UsersManagerDelegate {
     
     func didFailed(with error: Error) {
         print(error)
+    }
+}
+
+//MARK: - UICollectionViewDelegateFlowLayout
+
+extension ViewController: UICollectionViewDelegateFlowLayout {
+ 
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize
+    {
+        let leftAndRightPaddings: CGFloat = 50.0
+        let numberOfItemsPerRow: CGFloat = 2.0
+        let width = (collectionView.frame.width - leftAndRightPaddings) / numberOfItemsPerRow
+        return CGSize(width: width, height: width)
     }
 }
