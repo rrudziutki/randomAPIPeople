@@ -9,15 +9,14 @@ import UIKit
 
 class ViewController: UICollectionViewController {
     
-    var users = [UserModel]()
-    var usersManager = UsersManager()
-    var pressedCell = 0
+    private var users = [User]()
+    private var usersManager = UsersManager()
+    private var pressedCell = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Users"
-        usersManager.delegate = self
-        usersManager.performRequest()
+        configure()
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -25,14 +24,13 @@ class ViewController: UICollectionViewController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let userCell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! UserCell
-        userCell.setLabel(with: users[indexPath.row].username)
+        guard let userCell = collectionView.dequeueReusableCell(withReuseIdentifier: UserCell.selfIdentifier, for: indexPath) as? UserCell else { fatalError("Unable to deque cell as UserCell") }
+        userCell.userCellConfigure(with: users[indexPath.row].username)
         userCell.backgroundColor = UIColor.randomColor
         return userCell
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("The selected username is : \(users[indexPath.row])")
         pressedCell = indexPath.row
         performSegue(withIdentifier: "detail", sender: self)
     }
@@ -44,26 +42,32 @@ class ViewController: UICollectionViewController {
     }
 }
 
-//MARK: - UsersManagerDelegate
+//MARK: - Private ViewController
+private extension ViewController {
+    func configure() {
+        usersManager.delegate = self
+        usersManager.performRequest()
+    }
+}
 
+//MARK: - UsersManagerDelegate
 extension ViewController: UsersManagerDelegate {
     
-    func updateUsersName(with usersData: [UserModel]) {
-        for user in usersData {
-            self.users.append(user)
-        }
+    func updateUsersName(with usersData: [User]) {
+        _ = usersData.map { users.append($0) }
         self.collectionView.reloadData()
     }
     
-    func didFailed(with error: Error) {
-        print(error)
+    func presentError(with message: String) {
+        let alert = UIAlertController(title: "Something went wrong", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        self.present(alert, animated: true)
     }
 }
 
 //MARK: - UICollectionViewDelegateFlowLayout
-
 extension ViewController: UICollectionViewDelegateFlowLayout {
- 
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize
     {
         let leftAndRightPaddings: CGFloat = 50.0
