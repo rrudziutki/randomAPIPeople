@@ -9,11 +9,11 @@ import UIKit
 
 class DetailTableViewController: UITableViewController {
 
-    var user: User!
+    var userViewModel: UserViewModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = user.username
+        title = userViewModel.username
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -33,14 +33,14 @@ class DetailTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "detailViewCell", for: indexPath)
         switch indexPath.row {
         case 0:
-            createUsersCell(cell, with: user, attribute: .id)
+            createUsersCell(cell, with: userViewModel, attribute: .id)
         case 1:
-            createUsersCell(cell, with: user, attribute: .name)
+            createUsersCell(cell, with: userViewModel, attribute: .name)
         case 2:
-            createUsersCell(cell, with: user, attribute: .username)
+            createUsersCell(cell, with: userViewModel, attribute: .username)
         default:
             cell.textLabel?.text = "No information"
         }
@@ -52,14 +52,14 @@ class DetailTableViewController: UITableViewController {
     case id, name, username
     }
     
-    func createUsersCell(_ cell: UITableViewCell, with user: User, attribute: UserAttribute) {
+    func createUsersCell(_ cell: UITableViewCell, with userViewModel: UserViewModel, attribute: UserAttribute) {
         switch attribute {
         case .id:
-            cell.textLabel?.text = "User ID: \(user.id)"
+            cell.textLabel?.text = "User ID: \(userViewModel.id)"
         case .name:
-            cell.textLabel?.text = "User Name: \(user.name)"
+            cell.textLabel?.text = "User Name: \(userViewModel.name)"
         case .username:
-            cell.textLabel?.text = "User Username: \(user.username)"
+            cell.textLabel?.text = "User Username: \(userViewModel.username)"
         }
     }
 }

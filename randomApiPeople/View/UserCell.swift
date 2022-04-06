@@ -15,7 +15,7 @@ class UserCell: UICollectionViewCell, SelfIdentifier {
         self.layer.cornerRadius = self.frame.size.width / 2
     }
     
-    func userCellConfigure(with name: String) {
-        userLabel.text = name
+    func userCellConfigure(with userViewModel: UserViewModel) {
+        userLabel.text = userViewModel.username
     }
 }
