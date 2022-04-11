@@ -9,11 +9,11 @@ import UIKit
 
 class DetailTableViewController: UITableViewController {
 
-    var userViewModel: UserViewModel!
+    var user: User!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = userViewModel.username
+        title = user.username
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -36,11 +36,11 @@ class DetailTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "detailViewCell", for: indexPath)
         switch indexPath.row {
         case 0:
-            createUsersCell(cell, with: userViewModel, attribute: .id)
+            createUsersCell(cell, with: user, attribute: .id)
         case 1:
-            createUsersCell(cell, with: userViewModel, attribute: .name)
+            createUsersCell(cell, with: user, attribute: .name)
         case 2:
-            createUsersCell(cell, with: userViewModel, attribute: .username)
+            createUsersCell(cell, with: user, attribute: .username)
         default:
             cell.textLabel?.text = "No information"
         }
@@ -52,14 +52,14 @@ class DetailTableViewController: UITableViewController {
     case id, name, username
     }
     
-    func createUsersCell(_ cell: UITableViewCell, with userViewModel: UserViewModel, attribute: UserAttribute) {
+    func createUsersCell(_ cell: UITableViewCell, with user: User, attribute: UserAttribute) {
         switch attribute {
         case .id:
-            cell.textLabel?.text = "User ID: \(userViewModel.id)"
+            cell.textLabel?.text = "User ID: \(user.id)"
         case .name:
-            cell.textLabel?.text = "User Name: \(userViewModel.name)"
+            cell.textLabel?.text = "User Name: \(user.name)"
         case .username:
-            cell.textLabel?.text = "User Username: \(userViewModel.username)"
+            cell.textLabel?.text = "User Username: \(user.username)"
         }
     }
 }
