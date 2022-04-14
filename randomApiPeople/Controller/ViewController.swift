@@ -14,8 +14,7 @@ class ViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Users"
-        userViewModel.delegate = self
-        userViewModel.fetchData()
+        configure()
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -35,8 +34,7 @@ class ViewController: UICollectionViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        //force downcast zostal bo zawsze sie uda
-        let destinationVC = segue.destination as! DetailTableViewController
+        guard let destinationVC = segue.destination as? DetailTableViewController else {fatalError("DetailVC")}
         let chosenUser = userViewModel.users[pressedCell]
         destinationVC.user = chosenUser
     }
@@ -48,9 +46,17 @@ class ViewController: UICollectionViewController {
     }
 }
 
+//MARK: - VC Private Extenstion
+private extension ViewController {
+    func configure() {
+        userViewModel.delegate = self
+        userViewModel.fetchData()
+    }
+}
+
 //MARK: - UserViewModelDelegate
 extension ViewController: UserViewModelDelegate {
-    func presentAlert(message: String, title: String = "Something went wrong") {
+    func presentAlert(message: String, title: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default))
         self.present(alert, animated: true)

@@ -17,6 +17,7 @@ extension UserViewModelDelegate {
         presentAlert(message: message, title: title)
     }
 }
+
 class UserViewModel {
     private let usersURL = "https://jsonplaceholder.typicode.com/users"
     var users = [User]()
@@ -59,7 +60,7 @@ class UserViewModel {
     }
     
     //MARK: - Response Error Handling
-    enum ErrorCodes: Int {
+    private enum ErrorCodes: Int {
         case permanentRedirect = 301
         case temporaryRedirect = 302
         case notFound = 404
@@ -86,5 +87,4 @@ class UserViewModel {
             return "Unknown error"
         }
     }
-    
 }

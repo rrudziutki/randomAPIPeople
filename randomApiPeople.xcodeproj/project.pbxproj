@@ -17,10 +17,23 @@
 		F520775927F1E5440063320D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F520775827F1E5440063320D /* User.swift */; };
 		F520775E27F1E7930063320D /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F520775D27F1E7930063320D /* UserViewModel.swift */; };
 		F5230EF027FA1564005D1754 /* SelfIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5230EEF27FA1564005D1754 /* SelfIdentifier.swift */; };
+		F533F680280730A000A2CBB5 /* ViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F533F67F280730A000A2CBB5 /* ViewModelTests.swift */; };
+		F533F6872808638900A2CBB5 /* DetailTableViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F533F6862808638900A2CBB5 /* DetailTableViewTests.swift */; };
 		F5372BB527F8410900766C1E /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5372BB427F8410900766C1E /* UIColor.swift */; };
 		F5372BB727F8668700766C1E /* HTTPResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5372BB627F8668700766C1E /* HTTPResponse.swift */; };
+		F55798912808815B00A10CA5 /* UserData.json in Resources */ = {isa = PBXBuildFile; fileRef = F55798902808815B00A10CA5 /* UserData.json */; };
 		F5AD7B3C27F330CB0054C0AF /* DetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5AD7B3B27F330CB0054C0AF /* DetailTableViewController.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F533F681280730A000A2CBB5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F50E037727F0C61300204882 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F50E037E27F0C61300204882;
+			remoteInfo = randomApiPeople;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		F50E037F27F0C61300204882 /* randomApiPeople.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = randomApiPeople.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -35,13 +48,24 @@
 		F520775827F1E5440063320D /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		F520775D27F1E7930063320D /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		F5230EEF27FA1564005D1754 /* SelfIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfIdentifier.swift; sourceTree = "<group>"; };
+		F533F67D280730A000A2CBB5 /* randomApiPeopleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = randomApiPeopleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F533F67F280730A000A2CBB5 /* ViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelTests.swift; sourceTree = "<group>"; };
+		F533F6862808638900A2CBB5 /* DetailTableViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTableViewTests.swift; sourceTree = "<group>"; };
 		F5372BB427F8410900766C1E /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		F5372BB627F8668700766C1E /* HTTPResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPResponse.swift; sourceTree = "<group>"; };
+		F55798902808815B00A10CA5 /* UserData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = UserData.json; sourceTree = "<group>"; };
 		F5AD7B3B27F330CB0054C0AF /* DetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		F50E037C27F0C61300204882 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F533F67A280730A000A2CBB5 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -55,6 +79,7 @@
 			isa = PBXGroup;
 			children = (
 				F50E038127F0C61300204882 /* randomApiPeople */,
+				F533F67E280730A000A2CBB5 /* randomApiPeopleTests */,
 				F50E038027F0C61300204882 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -63,6 +88,7 @@
 			isa = PBXGroup;
 			children = (
 				F50E037F27F0C61300204882 /* randomApiPeople.app */,
+				F533F67D280730A000A2CBB5 /* randomApiPeopleTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -110,6 +136,16 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		F533F67E280730A000A2CBB5 /* randomApiPeopleTests */ = {
+			isa = PBXGroup;
+			children = (
+				F533F6862808638900A2CBB5 /* DetailTableViewTests.swift */,
+				F533F67F280730A000A2CBB5 /* ViewModelTests.swift */,
+				F55798902808815B00A10CA5 /* UserData.json */,
+			);
+			path = randomApiPeopleTests;
+			sourceTree = "<group>";
+		};
 		F5372BB327F840F100766C1E /* Extensions and Protocols */ = {
 			isa = PBXGroup;
 			children = (
@@ -148,6 +184,24 @@
 			productReference = F50E037F27F0C61300204882 /* randomApiPeople.app */;
 			productType = "com.apple.product-type.application";
 		};
+		F533F67C280730A000A2CBB5 /* randomApiPeopleTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F533F685280730A000A2CBB5 /* Build configuration list for PBXNativeTarget "randomApiPeopleTests" */;
+			buildPhases = (
+				F533F679280730A000A2CBB5 /* Sources */,
+				F533F67A280730A000A2CBB5 /* Frameworks */,
+				F533F67B280730A000A2CBB5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F533F682280730A000A2CBB5 /* PBXTargetDependency */,
+			);
+			name = randomApiPeopleTests;
+			productName = randomApiPeopleTests;
+			productReference = F533F67D280730A000A2CBB5 /* randomApiPeopleTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -160,6 +214,10 @@
 				TargetAttributes = {
 					F50E037E27F0C61300204882 = {
 						CreatedOnToolsVersion = 13.3;
+					};
+					F533F67C280730A000A2CBB5 = {
+						CreatedOnToolsVersion = 13.3.1;
+						TestTargetID = F50E037E27F0C61300204882;
 					};
 				};
 			};
@@ -177,6 +235,7 @@
 			projectRoot = "";
 			targets = (
 				F50E037E27F0C61300204882 /* randomApiPeople */,
+				F533F67C280730A000A2CBB5 /* randomApiPeopleTests */,
 			);
 		};
 /* End PBXProject section */
@@ -189,6 +248,14 @@
 				F50E038F27F0C61800204882 /* LaunchScreen.storyboard in Resources */,
 				F50E038C27F0C61800204882 /* Assets.xcassets in Resources */,
 				F50E038A27F0C61300204882 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F533F67B280730A000A2CBB5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F55798912808815B00A10CA5 /* UserData.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -212,7 +279,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F533F679280730A000A2CBB5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F533F6872808638900A2CBB5 /* DetailTableViewTests.swift in Sources */,
+				F533F680280730A000A2CBB5 /* ViewModelTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F533F682280730A000A2CBB5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F50E037E27F0C61300204882 /* randomApiPeople */;
+			targetProxy = F533F681280730A000A2CBB5 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		F50E038827F0C61300204882 /* Main.storyboard */ = {
@@ -404,6 +488,42 @@
 			};
 			name = Release;
 		};
+		F533F683280730A000A2CBB5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = X7G8P2YRKM;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = randomApiPeopleTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/randomApiPeople.app/randomApiPeople";
+			};
+			name = Debug;
+		};
+		F533F684280730A000A2CBB5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = X7G8P2YRKM;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = randomApiPeopleTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/randomApiPeople.app/randomApiPeople";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -421,6 +541,15 @@
 			buildConfigurations = (
 				F50E039427F0C61800204882 /* Debug */,
 				F50E039527F0C61800204882 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F533F685280730A000A2CBB5 /* Build configuration list for PBXNativeTarget "randomApiPeopleTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F533F683280730A000A2CBB5 /* Debug */,
+				F533F684280730A000A2CBB5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
