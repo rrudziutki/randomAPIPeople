@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol UserViewModelDelegate {
+protocol UserViewModelDelegate: AnyObject {
     func presentAlert(message: String, title: String)
     func updateUI()
 }
@@ -19,45 +19,40 @@ extension UserViewModelDelegate {
 }
 
 class UserViewModel {
-    private let usersURL = "https://jsonplaceholder.typicode.com/users"
-    var users = [User]()
-    var delegate: UserViewModelDelegate?
     
-    func fetchData() {
-        guard let url = URL(string: usersURL) else { return }
-        let session = URLSession(configuration: .default)
-        let task = session.dataTask(with: url) { data, response, _ in
+    var users = [User]()
+    weak var delegate: UserViewModelDelegate?
+    var umi: UsersManager?
+    
+    init(usersManager: UsersManager = UsersManagerImpl()) {
+        umi = usersManager
+    }
+    func getUsers() {
+        umi?.fetchUsers { result in
             DispatchQueue.main.async {
-                guard let httpResponse = response as? HTTPURLResponse else {
-                    self.delegate?.presentAlert(message: "No response from the server")
-                    return
-                }
-                if httpResponse.isSucces {
-                    if let safeData = data {
-                        if let unwrapedData = self.parseJSON(safeData) {
-                            self.users = unwrapedData.map( { return $0 } )
-                            self.delegate?.updateUI()
-                        }
+                switch result {
+                case .success(let successValue):
+                    self.users = successValue.map( { return $0 } )
+                    self.delegate?.updateUI()
+                    
+                case .failure(let error):
+                    switch error {
+                    case .serverError(let errorMessage):
+                        self.delegate?.presentAlert(message: errorMessage)
+                    case .invalidURL:
+                        self.delegate?.presentAlert(message: "Invalid URL")
+                    case .noData:
+                        self.delegate?.presentAlert(message: "No data send from server")
+                    case .decodingError:
+                        self.delegate?.presentAlert(message: "Error while decoding data")
                     }
-                } else {
-                    let message = self.handleErrorWith(statusCode: httpResponse.statusCode)
-                    self.delegate?.presentAlert(message: message)
                 }
+                
             }
         }
-        task.resume()
     }
     
-    func parseJSON(_ data: Data) -> [User]? {
-        let decoder = JSONDecoder()
-        do {
-            let decodedData = try decoder.decode([User].self, from: data)
-            return decodedData
-        } catch {
-            delegate?.presentAlert(message: "Error while parsing data")
-            return nil
-        }
-    }
+    
     
     //MARK: - Response Error Handling
     private enum ErrorCodes: Int {
@@ -76,7 +71,7 @@ class UserViewModel {
         case .temporaryRedirect:
             return "You have to be temporary redirected to another URL."
         case .notFound:
-                return "Sorry, this resource is currently unavailable."
+            return "Sorry, this resource is currently unavailable."
         case .gone:
             return "Sorry, this resource does not exist."
         case .internalServerError:

@@ -22,6 +22,7 @@
 		F5372BB527F8410900766C1E /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5372BB427F8410900766C1E /* UIColor.swift */; };
 		F5372BB727F8668700766C1E /* HTTPResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5372BB627F8668700766C1E /* HTTPResponse.swift */; };
 		F55798912808815B00A10CA5 /* UserData.json in Resources */ = {isa = PBXBuildFile; fileRef = F55798902808815B00A10CA5 /* UserData.json */; };
+		F59304F128186184001F99F7 /* UsersManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59304F028186184001F99F7 /* UsersManager.swift */; };
 		F5AD7B3C27F330CB0054C0AF /* DetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5AD7B3B27F330CB0054C0AF /* DetailTableViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -54,6 +55,7 @@
 		F5372BB427F8410900766C1E /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		F5372BB627F8668700766C1E /* HTTPResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPResponse.swift; sourceTree = "<group>"; };
 		F55798902808815B00A10CA5 /* UserData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = UserData.json; sourceTree = "<group>"; };
+		F59304F028186184001F99F7 /* UsersManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersManager.swift; sourceTree = "<group>"; };
 		F5AD7B3B27F330CB0054C0AF /* DetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -96,6 +98,7 @@
 		F50E038127F0C61300204882 /* randomApiPeople */ = {
 			isa = PBXGroup;
 			children = (
+				F59304EF2818616F001F99F7 /* Services */,
 				F5A8460C27FDFD15000068F8 /* ViewModel */,
 				F5372BB327F840F100766C1E /* Extensions and Protocols */,
 				F520775C27F1E6D90063320D /* Model */,
@@ -154,6 +157,14 @@
 				F5230EEF27FA1564005D1754 /* SelfIdentifier.swift */,
 			);
 			path = "Extensions and Protocols";
+			sourceTree = "<group>";
+		};
+		F59304EF2818616F001F99F7 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				F59304F028186184001F99F7 /* UsersManager.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 		F5A8460C27FDFD15000068F8 /* ViewModel */ = {
@@ -273,6 +284,7 @@
 				F50E038327F0C61300204882 /* AppDelegate.swift in Sources */,
 				F5372BB527F8410900766C1E /* UIColor.swift in Sources */,
 				F5230EF027FA1564005D1754 /* SelfIdentifier.swift in Sources */,
+				F59304F128186184001F99F7 /* UsersManager.swift in Sources */,
 				F5372BB727F8668700766C1E /* HTTPResponse.swift in Sources */,
 				F520775927F1E5440063320D /* User.swift in Sources */,
 				F50E038527F0C61300204882 /* SceneDelegate.swift in Sources */,

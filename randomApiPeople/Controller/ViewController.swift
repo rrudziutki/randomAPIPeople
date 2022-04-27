@@ -41,7 +41,7 @@ class ViewController: UICollectionViewController {
     
     //MARK: - Navigation Bar Button Configuration
     @IBAction func refreshPressed(_ sender: UIButton) {
-        userViewModel.fetchData()
+        userViewModel.getUsers()
         self.presentAlert(message: "", title: "Reloaded Data")
     }
 }
@@ -50,7 +50,7 @@ class ViewController: UICollectionViewController {
 private extension ViewController {
     func configure() {
         userViewModel.delegate = self
-        userViewModel.fetchData()
+        userViewModel.getUsers()
     }
 }
 
