@@ -8,13 +8,13 @@
 import Foundation
 
 protocol UsersManager {
-    func fetchUsers(completionHandler: @escaping (Result<Data, MyError>) -> Void)
+    func fetchUsers(completionHandler: @escaping (Result<[User], MyError>) -> Void)
 }
 
 struct UsersManagerImpl: UsersManager {
     private let usersURL = "https://jsonplaceholder.typicode.com/users"
     
-    func fetchUsers(completionHandler: @escaping (Result<Data, MyError>) -> Void) {
+    func fetchUsers(completionHandler: @escaping (Result<[User], MyError>) -> Void) {
         guard let url = URL(string: usersURL) else {
             completionHandler(.failure(.invalidURL))
             return
@@ -30,21 +30,34 @@ struct UsersManagerImpl: UsersManager {
                     completionHandler(.failure(.noData))
                     return
                 }
-                completionHandler(.success(safeData))
+                guard let unwrappedData = parseJSON(safeData) else {
+                    completionHandler(.failure(.parseDataError))
+                    return
+                }
+                completionHandler(.success(unwrappedData))
                 return
             } else {
                 completionHandler(.failure(MyError(rawValue: httpResponse.statusCode) ?? .noResponse))
             }
-            
         }
         task.resume()
     }
-    
+
+    private func parseJSON(_ data: Data) -> [User]? {
+        let decoder = JSONDecoder()
+        do {
+            let decodedData = try decoder.decode([User].self, from: data)
+            return decodedData
+        } catch {
+            return nil
+        }
+    }
     
 }
 
 //MARK: - Errors Enum
 enum MyError: Int, Error {
+    case parseDataError
     case noResponse
     case noData
     case invalidURL

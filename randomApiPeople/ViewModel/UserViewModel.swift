@@ -30,21 +30,16 @@ class UserViewModel {
     func getUsers() {
         usersManager?.fetchUsers { [weak self] result in
             guard let self = self else { return }
-            DispatchQueue.main.async {
+//            DispatchQueue.main.async {
                 switch result {
                 case .success(let successValue):
-                    guard let unwrappedData = self.parseJSON(successValue) else {
-                        self.delegate?.presentAlert(message: "Error while parsing data")
-                        return
-                    }
-                    self.users = unwrappedData.map( { return $0 } )
+                    self.users = successValue.map( { return $0 } )
                     self.delegate?.updateUI()
                     
                 case .failure(let error):
-                    let errorMessage = self.getErrorMessage(from: error)
-                    self.delegate?.presentAlert(message: errorMessage)
+                    self.delegate?.presentAlert(message: self.getErrorMessage(from: error))
                 }
-            }
+//            }
         }
     }
     
@@ -60,14 +55,16 @@ class UserViewModel {
     
     private func getErrorMessage(from error: MyError) -> String {
         switch MyError(rawValue: error.rawValue) {
+        case .parseDataError:
+            return "Error while parsing data."
         case .noResponse:
-            return "No response from the server"
+            return "No response from the server."
         case .noData:
-            return "No data received from the server"
+            return "No data received from the server."
         case .invalidURL:
-            return "Wrong URL"
+            return "Wrong URL."
         case .permanentRedirect:
-            return "You have to be redirected to another URL"
+            return "You have to be redirected to another URL."
         case .temporaryRedirect:
             return "You have to be temporary redirected to another URL."
         case .notFound:

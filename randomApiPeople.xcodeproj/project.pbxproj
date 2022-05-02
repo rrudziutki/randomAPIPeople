@@ -17,13 +17,14 @@
 		F520775927F1E5440063320D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F520775827F1E5440063320D /* User.swift */; };
 		F520775E27F1E7930063320D /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F520775D27F1E7930063320D /* UserViewModel.swift */; };
 		F5230EF027FA1564005D1754 /* SelfIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5230EEF27FA1564005D1754 /* SelfIdentifier.swift */; };
+		F52B3BD8281FFFEB00521BB6 /* UserViewModelDelegateMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52B3BD7281FFFEB00521BB6 /* UserViewModelDelegateMock.swift */; };
 		F533F680280730A000A2CBB5 /* ViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F533F67F280730A000A2CBB5 /* ViewModelTests.swift */; };
 		F533F6872808638900A2CBB5 /* DetailTableViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F533F6862808638900A2CBB5 /* DetailTableViewTests.swift */; };
 		F5372BB527F8410900766C1E /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5372BB427F8410900766C1E /* UIColor.swift */; };
 		F5372BB727F8668700766C1E /* HTTPResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5372BB627F8668700766C1E /* HTTPResponse.swift */; };
-		F55798912808815B00A10CA5 /* UserData.json in Resources */ = {isa = PBXBuildFile; fileRef = F55798902808815B00A10CA5 /* UserData.json */; };
+		F5533E02281FF6A10096D2B2 /* UserData.json in Resources */ = {isa = PBXBuildFile; fileRef = F5533E01281FF6A10096D2B2 /* UserData.json */; };
+		F5533E04281FF7220096D2B2 /* UsersManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59F446F281DC3EF008A1F19 /* UsersManagerMock.swift */; };
 		F59304F128186184001F99F7 /* UsersManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59304F028186184001F99F7 /* UsersManager.swift */; };
-		F59F4470281DC3EF008A1F19 /* UsersManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59F446F281DC3EF008A1F19 /* UsersManagerMock.swift */; };
 		F5AD7B3C27F330CB0054C0AF /* DetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5AD7B3B27F330CB0054C0AF /* DetailTableViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -50,12 +51,13 @@
 		F520775827F1E5440063320D /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		F520775D27F1E7930063320D /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		F5230EEF27FA1564005D1754 /* SelfIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfIdentifier.swift; sourceTree = "<group>"; };
+		F52B3BD7281FFFEB00521BB6 /* UserViewModelDelegateMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModelDelegateMock.swift; sourceTree = "<group>"; };
 		F533F67D280730A000A2CBB5 /* randomApiPeopleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = randomApiPeopleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F533F67F280730A000A2CBB5 /* ViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelTests.swift; sourceTree = "<group>"; };
 		F533F6862808638900A2CBB5 /* DetailTableViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTableViewTests.swift; sourceTree = "<group>"; };
 		F5372BB427F8410900766C1E /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		F5372BB627F8668700766C1E /* HTTPResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPResponse.swift; sourceTree = "<group>"; };
-		F55798902808815B00A10CA5 /* UserData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = UserData.json; sourceTree = "<group>"; };
+		F5533E01281FF6A10096D2B2 /* UserData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = UserData.json; sourceTree = "<group>"; };
 		F59304F028186184001F99F7 /* UsersManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersManager.swift; sourceTree = "<group>"; };
 		F59F446F281DC3EF008A1F19 /* UsersManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersManagerMock.swift; sourceTree = "<group>"; };
 		F5AD7B3B27F330CB0054C0AF /* DetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTableViewController.swift; sourceTree = "<group>"; };
@@ -100,8 +102,6 @@
 		F50E038127F0C61300204882 /* randomApiPeople */ = {
 			isa = PBXGroup;
 			children = (
-				F55798902808815B00A10CA5 /* UserData.json */,
-				F59F446E281DC3CF008A1F19 /* Mocks */,
 				F59304EF2818616F001F99F7 /* Services */,
 				F5A8460C27FDFD15000068F8 /* ViewModel */,
 				F5372BB327F840F100766C1E /* Extensions and Protocols */,
@@ -146,6 +146,8 @@
 		F533F67E280730A000A2CBB5 /* randomApiPeopleTests */ = {
 			isa = PBXGroup;
 			children = (
+				F5533E01281FF6A10096D2B2 /* UserData.json */,
+				F59F446E281DC3CF008A1F19 /* Mocks */,
 				F533F6862808638900A2CBB5 /* DetailTableViewTests.swift */,
 				F533F67F280730A000A2CBB5 /* ViewModelTests.swift */,
 			);
@@ -174,6 +176,7 @@
 			isa = PBXGroup;
 			children = (
 				F59F446F281DC3EF008A1F19 /* UsersManagerMock.swift */,
+				F52B3BD7281FFFEB00521BB6 /* UserViewModelDelegateMock.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -277,7 +280,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F55798912808815B00A10CA5 /* UserData.json in Resources */,
+				F5533E02281FF6A10096D2B2 /* UserData.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -296,7 +299,6 @@
 				F5372BB527F8410900766C1E /* UIColor.swift in Sources */,
 				F5230EF027FA1564005D1754 /* SelfIdentifier.swift in Sources */,
 				F59304F128186184001F99F7 /* UsersManager.swift in Sources */,
-				F59F4470281DC3EF008A1F19 /* UsersManagerMock.swift in Sources */,
 				F5372BB727F8668700766C1E /* HTTPResponse.swift in Sources */,
 				F520775927F1E5440063320D /* User.swift in Sources */,
 				F50E038527F0C61300204882 /* SceneDelegate.swift in Sources */,
@@ -309,6 +311,8 @@
 			files = (
 				F533F6872808638900A2CBB5 /* DetailTableViewTests.swift in Sources */,
 				F533F680280730A000A2CBB5 /* ViewModelTests.swift in Sources */,
+				F5533E04281FF7220096D2B2 /* UsersManagerMock.swift in Sources */,
+				F52B3BD8281FFFEB00521BB6 /* UserViewModelDelegateMock.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
