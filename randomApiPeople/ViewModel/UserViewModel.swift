@@ -21,14 +21,14 @@ extension UserViewModelDelegate {
 class UserViewModel {
     var users = [User]()
     weak var delegate: UserViewModelDelegate?
-    var umi: UsersManager?
+    private var usersManager: UsersManager?
     
     init(usersManager: UsersManager = UsersManagerImpl()) {
-        umi = usersManager
+        self.usersManager = usersManager
     }
     
     func getUsers() {
-        umi?.fetchUsers { [weak self] result in
+        usersManager?.fetchUsers { [weak self] result in
             guard let self = self else { return }
             DispatchQueue.main.async {
                 switch result {

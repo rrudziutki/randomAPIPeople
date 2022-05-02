@@ -10,19 +10,60 @@ import XCTest
 
 class ViewModelTests: XCTestCase {
     var sut: UserViewModel!
-    var session: URLSession!
-    
     
     override func setUpWithError() throws {
         try super.setUpWithError()
-        sut = UserViewModel()
-        session = URLSession(configuration: .default)
     }
 
     override func tearDownWithError() throws {
-        session = nil
         sut = nil
         try super.tearDownWithError()
     }
+    
+    func test_Fail404Case() {
+        let mockDelegate = MockDelegate()
+        sut = UserViewModel(usersManager: UsersManagerFail404Mock())
+        sut.delegate = mockDelegate
+        sut.getUsers()
+        DispatchQueue.main.async {
+            XCTAssertTrue(mockDelegate.isPresentAlertCalled)
+            XCTAssertFalse(mockDelegate.isUpdateUICalled)
+            XCTAssertEqual(mockDelegate.alertMessage, "Sorry, this resource cannot be found.")
+        }
+    }
 
+    func test_FailInvalidURL() {
+        let mockDelegate = MockDelegate()
+        sut = UserViewModel(usersManager: UsersManagerFailInvalidUrlMock())
+        sut.delegate = mockDelegate
+        sut.getUsers()
+        DispatchQueue.main.async {
+            XCTAssertTrue(mockDelegate.isPresentAlertCalled)
+            XCTAssertFalse(mockDelegate.isUpdateUICalled)
+            XCTAssertEqual(mockDelegate.alertMessage, "Wrong URL")
+        }
+    }
+    
+//    func test_Succes() {
+//        let mockDelegate = MockDelegate()
+//        sut = UserViewModel(usersManager: UsersManagerSuccesMock())
+//        sut.delegate = mockDelegate
+//        sut.getUsers()
+//        DispatchQueue.main.async {
+//            XCTAssertEqual(self.sut.users[0], User(id: 1, name: "Leanne Graham", username: "Bret"))
+//        }
+//    }
+    
+    func test_FailWhileParsingData() {
+        sut = UserViewModel(usersManager: UsersManagerFail404Mock())
+        let mockDelegate = MockDelegate()
+        sut.delegate = mockDelegate
+        sut.getUsers()
+        DispatchQueue.main.async {
+            XCTAssertFalse(mockDelegate.isPresentAlertCalled)
+            XCTAssertTrue(mockDelegate.isUpdateUICalled)
+            XCTAssertEqual(mockDelegate.alertMessage, "Error while parsing data")
+        }
+    }
+    
 }
