@@ -17,6 +17,8 @@
 		F520775927F1E5440063320D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F520775827F1E5440063320D /* User.swift */; };
 		F520775E27F1E7930063320D /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F520775D27F1E7930063320D /* UserViewModel.swift */; };
 		F5230EF027FA1564005D1754 /* SelfIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5230EEF27FA1564005D1754 /* SelfIdentifier.swift */; };
+		F5247F7D2827E6FC0053C4F1 /* URLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5247F7C2827E6FC0053C4F1 /* URLSession.swift */; };
+		F5247F7F2827EA9C0053C4F1 /* URLSessionMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5247F7E2827EA9C0053C4F1 /* URLSessionMock.swift */; };
 		F52B3BD8281FFFEB00521BB6 /* UserViewModelDelegateMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52B3BD7281FFFEB00521BB6 /* UserViewModelDelegateMock.swift */; };
 		F533F680280730A000A2CBB5 /* ViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F533F67F280730A000A2CBB5 /* ViewModelTests.swift */; };
 		F533F6872808638900A2CBB5 /* DetailTableViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F533F6862808638900A2CBB5 /* DetailTableViewTests.swift */; };
@@ -51,6 +53,8 @@
 		F520775827F1E5440063320D /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		F520775D27F1E7930063320D /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		F5230EEF27FA1564005D1754 /* SelfIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfIdentifier.swift; sourceTree = "<group>"; };
+		F5247F7C2827E6FC0053C4F1 /* URLSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSession.swift; sourceTree = "<group>"; };
+		F5247F7E2827EA9C0053C4F1 /* URLSessionMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionMock.swift; sourceTree = "<group>"; };
 		F52B3BD7281FFFEB00521BB6 /* UserViewModelDelegateMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModelDelegateMock.swift; sourceTree = "<group>"; };
 		F533F67D280730A000A2CBB5 /* randomApiPeopleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = randomApiPeopleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F533F67F280730A000A2CBB5 /* ViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelTests.swift; sourceTree = "<group>"; };
@@ -157,6 +161,7 @@
 		F5372BB327F840F100766C1E /* Extensions and Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				F5247F7C2827E6FC0053C4F1 /* URLSession.swift */,
 				F5372BB427F8410900766C1E /* UIColor.swift */,
 				F5372BB627F8668700766C1E /* HTTPResponse.swift */,
 				F5230EEF27FA1564005D1754 /* SelfIdentifier.swift */,
@@ -177,6 +182,7 @@
 			children = (
 				F59F446F281DC3EF008A1F19 /* UsersManagerMock.swift */,
 				F52B3BD7281FFFEB00521BB6 /* UserViewModelDelegateMock.swift */,
+				F5247F7E2827EA9C0053C4F1 /* URLSessionMock.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -293,6 +299,7 @@
 			files = (
 				F520775E27F1E7930063320D /* UserViewModel.swift in Sources */,
 				F515D28A27F0CD57002C9029 /* UserCell.swift in Sources */,
+				F5247F7D2827E6FC0053C4F1 /* URLSession.swift in Sources */,
 				F50E038727F0C61300204882 /* ViewController.swift in Sources */,
 				F5AD7B3C27F330CB0054C0AF /* DetailTableViewController.swift in Sources */,
 				F50E038327F0C61300204882 /* AppDelegate.swift in Sources */,
@@ -309,6 +316,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F5247F7F2827EA9C0053C4F1 /* URLSessionMock.swift in Sources */,
 				F533F6872808638900A2CBB5 /* DetailTableViewTests.swift in Sources */,
 				F533F680280730A000A2CBB5 /* ViewModelTests.swift in Sources */,
 				F5533E04281FF7220096D2B2 /* UsersManagerMock.swift in Sources */,

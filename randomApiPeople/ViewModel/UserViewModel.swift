@@ -30,7 +30,6 @@ class UserViewModel {
     func getUsers() {
         usersManager?.fetchUsers { [weak self] result in
             guard let self = self else { return }
-//            DispatchQueue.main.async {
                 switch result {
                 case .success(let successValue):
                     self.users = successValue.map( { return $0 } )
@@ -39,7 +38,6 @@ class UserViewModel {
                 case .failure(let error):
                     self.delegate?.presentAlert(message: self.getErrorMessage(from: error))
                 }
-//            }
         }
     }
     

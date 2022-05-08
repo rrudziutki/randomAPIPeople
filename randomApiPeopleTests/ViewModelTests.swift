@@ -9,53 +9,40 @@ import XCTest
 @testable import randomApiPeople
 
 class ViewModelTests: XCTestCase {
-    var sut: UserViewModel!
-    
-    override func setUpWithError() throws {
-        try super.setUpWithError()
-    }
-    
-    override func tearDownWithError() throws {
-        sut = nil
-        try super.tearDownWithError()
-    }
-    
-    func test_Fail404Case() {
+        var sut: UserViewModel!
+        let session = URLSessionMock()
         let mockDelegate = UserViewModelDelegateMock()
-        sut = UserViewModel(usersManager: UsersManagerFail404Mock())
-        sut.delegate = mockDelegate
-        sut.getUsers()
-        XCTAssertTrue(mockDelegate.isPresentAlertCalled)
-        XCTAssertFalse(mockDelegate.isUpdateUICalled)
-        XCTAssertEqual(mockDelegate.alertMessage, "Sorry, this resource cannot be found.")
-    }
-    
-    func test_FailInvalidURL() {
-        let mockDelegate = UserViewModelDelegateMock()
-        sut = UserViewModel(usersManager: UsersManagerFailInvalidUrlMock())
-        sut.delegate = mockDelegate
-        sut.getUsers()
-        XCTAssertTrue(mockDelegate.isPresentAlertCalled)
-        XCTAssertFalse(mockDelegate.isUpdateUICalled)
-        XCTAssertEqual(mockDelegate.alertMessage, "Wrong URL.")
-    }
-    
-//        func test_Succes() {
-//            let mockDelegate = UserViewModelDelegateMock()
-//            sut = UserViewModel(usersManager: UsersManagerSuccesMock())
-//            sut.delegate = mockDelegate
-//            sut.getUsers()
-//                XCTAssertEqual(self.sut.users[0], User(id: 1, name: "Leanne Graham", username: "Bret"))
-//        }
-    
-    func test_FailWhileParsingData() {
-        sut = UserViewModel(usersManager: UsersManagerFailParsingError())
-        let mockDelegate = UserViewModelDelegateMock()
-        sut.delegate = mockDelegate
-        sut.getUsers()
-        XCTAssertTrue(mockDelegate.isPresentAlertCalled)
-        XCTAssertFalse(mockDelegate.isUpdateUICalled)
-        XCTAssertEqual(mockDelegate.alertMessage, "Error while parsing data.")
-    }
-    
+
+        override func setUpWithError() throws {
+            try super.setUpWithError()
+            sut = UserViewModel(usersManager: UsersManagerImpl(session: session))
+            sut.delegate = mockDelegate
+        }
+
+        override func tearDownWithError() throws {
+            sut = nil
+            try super.tearDownWithError()
+        }
+        
+        func test_getUsers_happyPath() {
+            let bundle = Bundle(for: type(of: self))
+            guard let url = bundle.url(forResource: "UserData", withExtension: "json") else {
+                return
+            }
+            let data = try! Data(contentsOf: url)
+            session.data = data
+            session.response = HTTPURLResponse(url: URL(string: "https://mockurl.com")!, statusCode: 200, httpVersion: nil, headerFields: nil)
+            sut.getUsers()
+            XCTAssertEqual([User(id: 1, name: "Leanne Graham", username: "Bret")], sut.users)
+        }
+        
+        func test_error404() {
+            session.response = HTTPURLResponse(url: URL(string: "https://mockurl.com")!, statusCode: 404, httpVersion: nil, headerFields: nil)
+            sut.getUsers()
+            XCTAssertTrue(mockDelegate.isPresentAlertCalled)
+            XCTAssertFalse(mockDelegate.isUpdateUICalled)
+            XCTAssertEqual(mockDelegate.alertMessage, "Sorry, this resource cannot be found.")
+        }
+            
+           
 }

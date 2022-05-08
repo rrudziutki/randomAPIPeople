@@ -18,48 +18,109 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "616D8DFC-B1EE-4FC9-B00F-7FB4C5C22678"
-            shouldBeEnabled = "No"
+            uuid = "5770C18F-8CEE-4FEB-8D64-924FC135E821"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "randomApiPeopleTests/ViewModelTests.swift"
+            filePath = "randomApiPeopleTests/UsersManagerTests.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "24"
-            endingLineNumber = "24"
-            landmarkName = "test_Fail404Case()"
+            startingLineNumber = "28"
+            endingLineNumber = "28"
+            landmarkName = "test_getUsers_should_return_data()"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "5770C18F-8CEE-4FEB-8D64-924FC135E821 - 2193397351e53d65"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "randomApiPeopleTests.UsersManagerTests.test_fetchUsers_should_return_data() -&gt; ()"
+                  moduleName = "randomApiPeopleTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/rrudziutki/XCode/Mentoring/randomApiPeople/randomApiPeopleTests/UsersManagerTests.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "26"
+                  endingLineNumber = "26"
+                  offsetFromSymbolStart = "80">
+               </Location>
+               <Location
+                  uuid = "5770C18F-8CEE-4FEB-8D64-924FC135E821 - 2193397351e53d65"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "randomApiPeopleTests.UsersManagerTests.test_fetchUsers_should_return_data() -&gt; ()"
+                  moduleName = "randomApiPeopleTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/rrudziutki/XCode/Mentoring/randomApiPeople/randomApiPeopleTests/UsersManagerTests.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "26"
+                  endingLineNumber = "26"
+                  offsetFromSymbolStart = "308">
+               </Location>
+               <Location
+                  uuid = "5770C18F-8CEE-4FEB-8D64-924FC135E821 - 2193397351e53d44"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "randomApiPeopleTests.UsersManagerTests.test_fetchUsers_should_return_data() -&gt; ()"
+                  moduleName = "randomApiPeopleTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/rrudziutki/XCode/Mentoring/randomApiPeople/randomApiPeopleTests/UsersManagerTests.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "27"
+                  endingLineNumber = "27"
+                  offsetFromSymbolStart = "288">
+               </Location>
+               <Location
+                  uuid = "5770C18F-8CEE-4FEB-8D64-924FC135E821 - 2193397351e53d44"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "randomApiPeopleTests.UsersManagerTests.test_fetchUsers_should_return_data() -&gt; ()"
+                  moduleName = "randomApiPeopleTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/rrudziutki/XCode/Mentoring/randomApiPeople/randomApiPeopleTests/UsersManagerTests.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "27"
+                  endingLineNumber = "27"
+                  offsetFromSymbolStart = "304">
+               </Location>
+               <Location
+                  uuid = "5770C18F-8CEE-4FEB-8D64-924FC135E821 - b0f3de4e2ec961ca"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "randomApiPeopleTests.UsersManagerTests.test_getUsers_should_return_data() -&gt; ()"
+                  moduleName = "randomApiPeopleTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/rrudziutki/XCode/Mentoring/randomApiPeople/randomApiPeopleTests/UsersManagerTests.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "29"
+                  endingLineNumber = "29"
+                  offsetFromSymbolStart = "288">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "999EF3D1-BD08-486F-94B5-1AFF9D028C9F"
-            shouldBeEnabled = "No"
+            uuid = "8B856139-013E-409F-B9FC-FE87CBA50970"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "randomApiPeopleTests/ViewModelTests.swift"
+            filePath = "randomApiPeopleTests/UsersManagerTests.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "52"
-            endingLineNumber = "52"
-            landmarkName = "test_FailWhileParsingData()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "18B6FF49-DA09-4FF5-87E4-3C4BCA342F3F"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "randomApiPeopleTests/ViewModelTests.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "55"
-            endingLineNumber = "55"
-            landmarkName = "test_FailWhileParsingData()"
+            startingLineNumber = "40"
+            endingLineNumber = "40"
+            landmarkName = "test_error404()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

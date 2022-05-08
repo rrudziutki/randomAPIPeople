@@ -13,13 +13,17 @@ protocol UsersManager {
 
 struct UsersManagerImpl: UsersManager {
     private let usersURL = "https://jsonplaceholder.typicode.com/users"
+    private let session: URLSessionProtocol
+    
+    init(session: URLSessionProtocol = URLSession.shared) {
+        self.session = session
+    }
     
     func fetchUsers(completionHandler: @escaping (Result<[User], MyError>) -> Void) {
         guard let url = URL(string: usersURL) else {
             completionHandler(.failure(.invalidURL))
             return
         }
-        let session = URLSession.shared
         let task = session.dataTask(with: url) { data, response, error in
             guard let httpResponse = response as? HTTPURLResponse else {
                 completionHandler(.failure(.noResponse))
