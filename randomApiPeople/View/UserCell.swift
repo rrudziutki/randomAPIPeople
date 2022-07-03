@@ -17,5 +17,6 @@ class UserCell: UICollectionViewCell, SelfIdentifier {
     
     func userCellConfigure(with user: User) {
         userLabel.text = user.username
+        self.backgroundColor = UIColor.randomColor
     }
 }

@@ -24,7 +24,6 @@ class ViewController: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let userCell = collectionView.dequeueReusableCell(withReuseIdentifier: UserCell.selfIdentifier, for: indexPath) as? UserCell else { fatalError("Unable to deque cell as UserCell") }
         userCell.userCellConfigure(with: userViewModel.users[indexPath.row])
-        userCell.backgroundColor = UIColor.randomColor
         return userCell
     }
     
