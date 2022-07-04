@@ -9,65 +9,43 @@ import XCTest
 @testable import randomApiPeople
 
 class ViewModelTests: XCTestCase {
-    var sut: UserViewModel!
-    var session: URLSession!
-    
-    
-    override func setUpWithError() throws {
-        try super.setUpWithError()
-        sut = UserViewModel()
-        session = URLSession(configuration: .default)
-    }
+        var sut: UserViewModel!
+        let session = URLSessionMock()
+        let mockDelegate = UserViewModelDelegateMock()
 
-    override func tearDownWithError() throws {
-        session = nil
-        sut = nil
-        try super.tearDownWithError()
-    }
+        override func setUpWithError() throws {
+            try super.setUpWithError()
+            sut = UserViewModel(usersManager: UsersManagerImpl(session: session))
+            sut.delegate = mockDelegate
+        }
 
-    func test_ApiCall() {
-        //given
-        let url = URL(string: "https://jsonplaceholder.typicode.com/users")!
-        let promise = expectation(description: "Handler invoked")
-        var statusCode: Int?
-        var responseError: Error?
-        //when
-        let task = session.dataTask(with: url) { _, response, error in
-            statusCode = (response as? HTTPURLResponse)?.statusCode
-            responseError = error
-            promise.fulfill()
+        override func tearDownWithError() throws {
+            sut = nil
+            try super.tearDownWithError()
         }
-        task.resume()
-        wait(for: [promise], timeout: 5)
-        //then
-        XCTAssertNil(responseError, "Api Response Error")
-        XCTAssertEqual(statusCode, 200)
-    }
-  
-    func test_GetUserFromJson() {
-        //given
-        let bundle = Bundle(for: type(of: self))
-        guard let url = bundle.url(forResource: "UserData", withExtension: "json") else {
-            XCTFail("Missing UserData.json file")
-            return
+        
+        func test_getUsers_happyPath() {
+            let bundle = Bundle(for: type(of: self))
+            guard let url = bundle.url(forResource: "UserData", withExtension: "json") else {
+                XCTFail("No JSON file")
+                return
+            }
+            let data = try! Data(contentsOf: url)
+            session.data = data
+            session.response = HTTPURLResponse(url: URL(string: "https://mockurl.com")!, statusCode: 200, httpVersion: nil, headerFields: nil)
+            sut.getUsers()
+            XCTAssertFalse(mockDelegate.isPresentAlertCalled)
+            XCTAssertTrue(mockDelegate.isUpdateUICalled)
+            XCTAssertEqual([User(id: 1, name: "Leanne Graham", username: "Bret")], sut.users)
         }
-        let data = try! Data(contentsOf: url)
-        //when
-        let userArray: [User]? = sut.parseJSON(data)
-        guard let unwrappedUsers = userArray else { return }
-        let user = unwrappedUsers[0]
-        //then
-        XCTAssertEqual(user.id, 1)
-        XCTAssertEqual(user.name, "Leanne Graham")
-        XCTAssertEqual(user.username, "Bret")
+        
+        func test_error404() {
+            session.response = HTTPURLResponse(url: URL(string: "https://mockurl.com")!, statusCode: 404, httpVersion: nil, headerFields: nil)
+            sut.getUsers()
+            XCTAssertTrue(mockDelegate.isPresentAlertCalled)
+            XCTAssertFalse(mockDelegate.isUpdateUICalled)
+            XCTAssertEqual(mockDelegate.alertMessage, "Sorry, this resource cannot be found.")
         }
-    
-    func test_handleError() {
-        //given
-        let statusCode = 404
-        //when
-        let errorMessage = sut.handleErrorWith(statusCode: statusCode)
-        //then
-        XCTAssertEqual(errorMessage, "Sorry, this resource is currently unavailable.")
-    }
+            
+           
 }

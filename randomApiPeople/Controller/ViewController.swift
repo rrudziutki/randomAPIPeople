@@ -24,7 +24,6 @@ class ViewController: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let userCell = collectionView.dequeueReusableCell(withReuseIdentifier: UserCell.selfIdentifier, for: indexPath) as? UserCell else { fatalError("Unable to deque cell as UserCell") }
         userCell.userCellConfigure(with: userViewModel.users[indexPath.row])
-        userCell.backgroundColor = UIColor.randomColor
         return userCell
     }
     
@@ -34,7 +33,7 @@ class ViewController: UICollectionViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let destinationVC = segue.destination as? DetailTableViewController else {fatalError("DetailVC")}
+        guard let destinationVC = segue.destination as? DetailTableViewController else { fatalError("DetailVC") }
         let chosenUser = userViewModel.users[pressedCell]
         destinationVC.user = chosenUser
     }
@@ -57,13 +56,17 @@ private extension ViewController {
 //MARK: - UserViewModelDelegate
 extension ViewController: UserViewModelDelegate {
     func presentAlert(message: String, title: String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default))
-        self.present(alert, animated: true)
+        DispatchQueue.main.async {
+            let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default))
+            self.present(alert, animated: true)
+        }
     }
     
     func updateUI() {
-        collectionView.reloadData()
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+        }
     }
 }
 

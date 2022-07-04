@@ -8,39 +8,51 @@
 import Foundation
 
 protocol UsersManager {
-    func fetchUsers(completionHandler: @escaping (Result<[User], MyError>) -> Void)
+    func fetchUsers(completionHandler: @escaping (Result<[User], MyError>) -> Void, defaultURL: String)
+}
+
+extension UsersManager {
+    func fetchUsers(completionHandler: @escaping (Result<[User], MyError>) -> Void, defaultURL: String = "https://jsonplaceholder.typicode.com/users") {
+        fetchUsers(completionHandler: completionHandler, defaultURL: defaultURL)
+    }
 }
 
 struct UsersManagerImpl: UsersManager {
-    private let usersURL = "https://jsonplaceholder.typicode.com/users"
+    private let session: URLSessionProtocol
     
-    func fetchUsers(completionHandler: @escaping (Result<[User], MyError>) -> Void) {
-        guard let url = URL(string: usersURL) else {
+    init(session: URLSessionProtocol = URLSession.shared) {
+        self.session = session
+    }
+    
+    func fetchUsers(completionHandler: @escaping (Result<[User], MyError>) -> Void, defaultURL: String) {
+        guard let url = URL(string: defaultURL) else {
             completionHandler(.failure(.invalidURL))
             return
         }
-        let session = URLSession.shared
-        let task = session.dataTask(with: url) { data, _, error in
-            if error != nil {
-                completionHandler(.failure(.serverError(error?.localizedDescription ?? "Unknown error")))
+        let task = session.dataTask(with: url) { data, response, error in
+            guard let httpResponse = response as? HTTPURLResponse else {
+                completionHandler(.failure(.noResponse))
                 return
             }
-            guard let safeData = data  else {
-                completionHandler(.failure(.noData))
+            if httpResponse.isSucces {
+                guard let safeData = data else {
+                    completionHandler(.failure(.noData))
+                    return
+                }
+                guard let unwrappedData = parseJSON(safeData) else {
+                    completionHandler(.failure(.parseDataError))
+                    return
+                }
+                completionHandler(.success(unwrappedData))
                 return
+            } else {
+                completionHandler(.failure(MyError(rawValue: httpResponse.statusCode) ?? .unknown))
             }
-            guard let unwrappedData = parseJSON(safeData) else {
-                completionHandler(.failure(.decodingError))
-                return
-            }
-            completionHandler(.success(unwrappedData))
-            return
         }
         task.resume()
     }
-    
- 
-    func parseJSON(_ data: Data) -> [User]? {
+
+    private func parseJSON(_ data: Data) -> [User]? {
         let decoder = JSONDecoder()
         do {
             let decodedData = try decoder.decode([User].self, from: data)
@@ -49,13 +61,19 @@ struct UsersManagerImpl: UsersManager {
             return nil
         }
     }
-    
 }
 
-enum MyError: Error {
-    case serverError(String)
-    case invalidURL
+//MARK: - Errors Enum
+enum MyError: Int, Error {
+    case parseDataError
+    case noResponse
     case noData
-    case decodingError
+    case invalidURL
+    case permanentRedirect = 301
+    case temporaryRedirect = 302
+    case notFound = 404
+    case gone = 410
+    case internalServerError = 500
+    case serviceUnavailable = 503
+    case unknown
 }
-
