@@ -73,8 +73,10 @@ class UserViewModel {
             return "Sorry, server problems."
         case .serviceUnavailable:
             return "Service unavailable, please come back later."
-        case .none:
+        case .unknown:
             return "Unknown error"
+        default:
+            return "Something went wrong"
         }
     }
     

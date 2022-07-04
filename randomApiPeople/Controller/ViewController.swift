@@ -33,7 +33,7 @@ class ViewController: UICollectionViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let destinationVC = segue.destination as? DetailTableViewController else {fatalError("DetailVC")}
+        guard let destinationVC = segue.destination as? DetailTableViewController else { fatalError("DetailVC") }
         let chosenUser = userViewModel.users[pressedCell]
         destinationVC.user = chosenUser
     }

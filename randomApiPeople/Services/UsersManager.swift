@@ -8,19 +8,24 @@
 import Foundation
 
 protocol UsersManager {
-    func fetchUsers(completionHandler: @escaping (Result<[User], MyError>) -> Void)
+    func fetchUsers(completionHandler: @escaping (Result<[User], MyError>) -> Void, defaultURL: String)
+}
+
+extension UsersManager {
+    func fetchUsers(completionHandler: @escaping (Result<[User], MyError>) -> Void, defaultURL: String = "https://jsonplaceholder.typicode.com/users") {
+        fetchUsers(completionHandler: completionHandler, defaultURL: defaultURL)
+    }
 }
 
 struct UsersManagerImpl: UsersManager {
-    private let usersURL = "https://jsonplaceholder.typicode.com/users"
     private let session: URLSessionProtocol
     
     init(session: URLSessionProtocol = URLSession.shared) {
         self.session = session
     }
     
-    func fetchUsers(completionHandler: @escaping (Result<[User], MyError>) -> Void) {
-        guard let url = URL(string: usersURL) else {
+    func fetchUsers(completionHandler: @escaping (Result<[User], MyError>) -> Void, defaultURL: String) {
+        guard let url = URL(string: defaultURL) else {
             completionHandler(.failure(.invalidURL))
             return
         }
@@ -41,7 +46,7 @@ struct UsersManagerImpl: UsersManager {
                 completionHandler(.success(unwrappedData))
                 return
             } else {
-                completionHandler(.failure(MyError(rawValue: httpResponse.statusCode) ?? .noResponse))
+                completionHandler(.failure(MyError(rawValue: httpResponse.statusCode) ?? .unknown))
             }
         }
         task.resume()
@@ -56,7 +61,6 @@ struct UsersManagerImpl: UsersManager {
             return nil
         }
     }
-    
 }
 
 //MARK: - Errors Enum
@@ -71,4 +75,5 @@ enum MyError: Int, Error {
     case gone = 410
     case internalServerError = 500
     case serviceUnavailable = 503
+    case unknown
 }

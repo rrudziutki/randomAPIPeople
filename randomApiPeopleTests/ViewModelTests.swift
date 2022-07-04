@@ -27,12 +27,15 @@ class ViewModelTests: XCTestCase {
         func test_getUsers_happyPath() {
             let bundle = Bundle(for: type(of: self))
             guard let url = bundle.url(forResource: "UserData", withExtension: "json") else {
+                XCTFail("No JSON file")
                 return
             }
             let data = try! Data(contentsOf: url)
             session.data = data
             session.response = HTTPURLResponse(url: URL(string: "https://mockurl.com")!, statusCode: 200, httpVersion: nil, headerFields: nil)
             sut.getUsers()
+            XCTAssertFalse(mockDelegate.isPresentAlertCalled)
+            XCTAssertTrue(mockDelegate.isUpdateUICalled)
             XCTAssertEqual([User(id: 1, name: "Leanne Graham", username: "Bret")], sut.users)
         }
         
